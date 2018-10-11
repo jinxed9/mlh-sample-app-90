@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
 	"node": "8.11.4"
-  }
+  },
   "description": "The backend for the MLH-sample-app",
   "main": "index.js",
   "scripts": {
