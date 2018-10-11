@@ -1,78 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
+import Tweet from './components/Tweet'
 import axios from 'axios';
 
 class App extends Component {
   //Initialize the state
-  state = {tweets:[]}
+  state = {statuses:[]}
   
-  getTweets = () => {
-	  //Get the tweets and store them in the state
-	  fetch('localhost:5000/api/tweets')
-		.then(res => res.json())
-		.then(tweets => this.setState({ tweets }));
-
-  }
   
   componentDidMount(){
-	  this.getTweets();
-	  console.log(this.state);
+	  axios.get('http://localhost:5000/api/tweets')
+      .then(response => {
+      	let statuses = response.data.statuses
+      	this.setState({statuses})
+      	console.log(statuses)
+      })
   }
   
   render() {
-	  
-	const { tweets } = this.state;
+
+  	let tweets = this.state.statuses;
+
+	console.log(tweets);
 	
     return (
 		<div className="App">
 			<h1>MLH Sample App</h1>
 			<div className="container">
 			  <ul className="dashboard-list">
-				<li key="1">
-				  <div className='tweet'>
-					<div className='tweet-info'>
-					  <div>
-						<span>Major League Hacking</span>
-						<div>10/10/17</div>
-						<p>This is what we were tweeting about on this date!</p>
-					  </div>    
-					  <div className='tweet-icons'>
-						<span>Replys</span>
-						<span>Likes</span>
-					  </div>
-					</div>
-				  </div>
-				</li>
-				<li key="2">
-				  <div className='tweet'>
-					<div className='tweet-info'>
-					  <div>
-						<span>Major League Hacking</span>
-						<div>10/10/17</div>
-						<p>This is what we were tweeting about on this date!</p>
-					  </div>    
-					  <div className='tweet-icons'>
-						<span>Replys</span>
-						<span>Likes</span>
-					  </div>
-					</div>
-				  </div>
-				</li>
-				<li key="3">
-				  <div className='tweet'>
-					<div className='tweet-info'>
-					  <div>
-						<span>Major League Hacking</span>
-						<div>10/10/17</div>
-						<p>This is what we were tweeting about on this date!</p>
-					  </div>    
-					  <div className='tweet-icons'>
-						<span>Replys</span>
-						<span>Likes</span>
-					  </div>
-					</div>
-				  </div>
-				</li>
+				{tweets.map(index => (
+					<li key={index.id}>
+						<Tweet author={index.user.name} date={index.created_at} text={index.text} pic={index.user.profile_image_url}/>
+					</li>
+				))}	
 			  </ul>
 			</div>
       </div>
