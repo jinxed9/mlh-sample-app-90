@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
   //Initialize the state
@@ -7,13 +8,15 @@ class App extends Component {
   
   getTweets = () => {
 	  //Get the tweets and store them in the state
-//	  fetch('/api/tweets')
-//		.then(res => res.json())
-//		.then(tweets => this.setState({ tweets }));
+	  fetch('localhost:5000/api/tweets')
+		.then(res => res.json())
+		.then(tweets => this.setState({ tweets }));
+
   }
   
   componentDidMount(){
 	  this.getTweets();
+	  console.log(this.state);
   }
   
   render() {

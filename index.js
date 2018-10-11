@@ -58,7 +58,7 @@ app.listen(port, () => {
 	//init our tweet object when the server starts
 	getMlhacksTweets()
 	
-	//set our tweet object to update every minute.
-	setInterval(getMlhacksTweets,6000)
+	//set our tweet object to update every 5 minutes.
+	setInterval(getMlhacksTweets,60000)
 	console.log(`Server running on port {port}`)
 });
