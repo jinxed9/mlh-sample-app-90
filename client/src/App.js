@@ -9,7 +9,7 @@ class App extends Component {
   
   
   componentDidMount(){
-	  axios.get('http://localhost:5000/api/tweets')
+	  axios.get('https://salty-ridge-74365.herokuapp.com/api/tweets')
       .then(response => {
       	let statuses = response.data.statuses
       	this.setState({statuses})
