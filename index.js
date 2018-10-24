@@ -79,7 +79,7 @@ let getMlhacksTweets = function(){
 
 /* 
 	We need to tell the server where to find the files for the UI. In this case, we
-	pointed them towards the 'client/build' directory 
+	pointed it towards the 'client/build' directory 
 */
 app.use(express.static(path.join(__dirname,'client/build')))
 app.use(function (req, res, next) {
